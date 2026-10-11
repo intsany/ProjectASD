@@ -57,7 +57,7 @@ public class SinglyLinkedList implements LinkedList{
         if(isEmpty()){
             System.err.println("Linked list kosong");
         }
-        else if(size==1){//else if(head==tail)
+        else if(size==1){
             head = null;
             tail = null;
             size--;
@@ -72,7 +72,7 @@ public class SinglyLinkedList implements LinkedList{
         if(isEmpty()){
             System.err.println("Linked list kosong");
         }
-        else if(size==1){//else if(head==tail)
+        else if(size==1){
             head = null;
             tail = null;
             size--;
@@ -116,18 +116,37 @@ public class SinglyLinkedList implements LinkedList{
     }
     @Override
     public Object get(int index) {
-        // TODO digunakan untuk mengembalikan data pada index ke-i dimulai dari head. Head memiliki index 0
-        return null;
+        if(index <0 || index >= size){
+            System.out.println("Index di luar jangkauan list");
+             return null;
+        } 
+        
+        Node temp = head;
+        for(int i = 0; i < index; i++){
+            temp = temp.pointer;
+        }
+
+        return temp.data;
+       
     }
     @Override
     public int indexOf(Object targetData) {
-        // TODO digunakan mencari kemunculan pertama targetData pada linked list dan mengembalikan indeksnya. Indeks dari head adalah 0. Jika tidak ada targetData pada linked list, kembalikan nilai -1 
-        return 0;
+        Node temp = head;
+
+        for(int i = 0; i < size; i++){
+            if(temp.data == null ? targetData == null : temp.data.equals(targetData)){
+                return i;
+            }
+            temp = temp.pointer; 
+        }
+        return -1;
     }
     @Override
     public void printReverse() {
-        // TODO digunakan untuk mencetak data pada linked list dengan urutan terbalik, dari tail ke head.
-        
+        Object [] arr = toArray();
+        for (int i = arr.length - 1; i >= 0; i--){
+            System.out.println(arr[i]);
+        }
     }
     @Override
     public boolean remove(Object targetData) {

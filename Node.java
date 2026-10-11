@@ -8,6 +8,8 @@ public class Node {
     public Node(Object inputData){
         data = inputData;
     }
+
     public Node(){
+        
     }
 }
